@@ -1,6 +1,6 @@
 {
   "name": "create-electron-next-tailwind",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A template for creating applications using Electron, Next.js, and Tailwind CSS.",
   "main": "main/index.js",
   "productName": "ElectronTypescriptNext",
