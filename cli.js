@@ -29,12 +29,13 @@ if (!projectName) {
 }
 
 function createProject(projectName) {
-  // 复制当前目录到新项目的目录
-  // 复制模板项目到新项目的目录
-  fs.copySync(
-    path.join(__dirname, "template", "my-electron-next-tailwind-template"),
-    path.join(__dirname, "..", projectName)
-  );
+  fs.copySync(__dirname, path.join(process.cwd(), projectName), {
+    filter: (src) => {
+      // 忽略 cli.js 文件
+      return path.basename(src) !== 'cli.js';
+    }
+  });
+
 
   console.log(`Project created: ${projectName}`);
 }
