@@ -1,48 +1,93 @@
-# Electron with Typescript application example
+# Nextjs-Electron-TailwindCSS App Setup Guide
 
-This example show how you can use Next.js inside an Electron application to avoid a lot of configuration, use Next.js router as view and use server-render to speed up the initial render of the application. Both Next.js and Electron layers are written in TypeScript and compiled to JavaScript during the build process.
+This repository provides the setup for a project using Next.js, Electron, and Tailwind CSS.
 
-| Part       | Source code (Typescript) | Builds (JavaScript) |
-| ---------- | ------------------------ | ------------------- |
-| Next.js    | `/renderer`              | `/renderer`         |
-| Electron   | `/electron-src`          | `/main`             |
-| Production |                          | `/dist`             |
+## Getting Started
 
-For development it's going to run a HTTP server and let Next.js handle routing. In production it use `output: 'export'` to pre-generate HTML static files and use them in your app instead of running an HTTP server.
+### 1. Create a new app with Next.js and Electron
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Initiate a new project with create-next-app and Electron (TypeScript):
 
 ```bash
-npx create-next-app --example with-electron-typescript with-electron-typescript-app
+yarn create next-app --example with-electron-typescript your-app-name
+yarn dev
 ```
+If you encounter an error `UnhandledPromiseRejectionWarning: Error: Cannot find module 'node:stream/web`, use `yarn add electron@latest` to resolve it.
+
+### 2. Setup Tailwind CSS
+
+Add Tailwind CSS, PostCSS and Autoprefixer:
 
 ```bash
-yarn create next-app --example with-electron-typescript with-electron-typescript-app
+yarn add -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 ```
 
-```bash
-pnpm create next-app --example with-electron-typescript with-electron-typescript-app
+### 3. Modify the `tailwind.config.js` file:
+
+Add the specified paths to the content array:
+
+```jsx
+module.exports = {
+  content: [
+    // add the following line
+    "./renderer/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
 ```
 
-Available commands:
+### 4. Create `./styles/globals.css` file:
 
-```bash
-"build-renderer": build and transpile Next.js layer
-"build-electron": transpile electron layer
-"build": build both layers
-"dev": start dev version
-"dist": create production electron build
-"type-check": check TypeScript in project
+This file is for global styles:
+
+```jsx
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
-## Notes
+### 5. Import `globals.css` in `./renderer/components/Layout.tsx`:
 
-You can create the production app using `npm run dist`.
+```jsx
+// add the following line
+import '../../styles/globals.css'
 
-_note regarding types:_
+import React, { ReactNode } from 'react'
 
-- Electron provides its own type definitions, so you don't need @types/electron installed!
-  source: https://www.npmjs.com/package/@types/electron
-- There were no types available for `electron-next` at the time of creating this example, so until they are available there is a file `electron-next.d.ts` in `electron-src` directory.
+import Head from 'next/head'
+import Link from 'next/link'
+
+... other code
+```
+
+### 6. Test the setup:
+
+Add Tailwind CSS classes to your components and verify if they work correctly. Initial rendering of styles may take some time.
+
+```jsx
+// ./renderer/pages/index.tsx
+
+... other code
+
+return (
+    <Layout title="Home | Next.js + TypeScript + Electron Example">
+      <h1>Hello Next.js 👋</h1>
+      {/* add the following line */}
+      <h1 className="text-3xl font-bold underline">
+        Hello TailwindCSS 👋
+      </h1>
+      <button onClick={onSayHiClick}>Say hi to electron</button>
+      <p>
+        <Link href="/about">About</Link>
+      </p>
+    </Layout>
+  )
+
+... other code
+```
+
+And there you have it, a Next.js application running with Electron and styled with Tailwind CSS.
