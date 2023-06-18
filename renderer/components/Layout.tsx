@@ -1,6 +1,10 @@
+// add the following line
+// import '../../styles/globals.css'
+
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
+
 import Head from 'next/head'
+import Link from 'next/link'
 
 type Props = {
   children: ReactNode
