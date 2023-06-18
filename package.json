@@ -1,7 +1,12 @@
 {
-  "private": true,
+  "name": "electron-nextjs-tailwind",
+  "version": "1.0.0",
+  "description": "A template for creating applications using Electron, Next.js, and Tailwind CSS.",
   "main": "main/index.js",
   "productName": "ElectronTypescriptNext",
+  "bin": {
+    "create-ent": "./cli.js"
+  },
   "scripts": {
     "clean": "rimraf dist main renderer/out renderer/.next",
     "dev": "npm run build-electron && electron .",
@@ -12,6 +17,14 @@
     "dist": "npm run build && electron-builder",
     "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p ./electron-src/tsconfig.json"
   },
+  "keywords": [
+    "electron",
+    "next.js",
+    "tailwind css",
+    "template"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
     "electron-is-dev": "^1.1.0",
     "electron-next": "^3.1.5",
@@ -25,6 +38,7 @@
     "autoprefixer": "^10.4.14",
     "electron": "^25.1.1",
     "electron-builder": "^23.0.3",
+    "fs-extra": "^11.1.1",
     "next": "latest",
     "postcss": "^8.4.24",
     "rimraf": "^3.0.0",
