@@ -1,6 +1,6 @@
 {
-  "name": "create-electron-next-tailwind",
-  "version": "1.0.6",
+  "name": "create-ent-app",
+  "version": "1.1.0",
   "description": "A template for creating applications using Electron, Next.js, and Tailwind CSS.",
   "main": "cli.js",
   "bin": {

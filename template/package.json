@@ -1,6 +1,6 @@
 {
   "name": "create-electron-next-tailwind",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "A template for creating applications using Electron, Next.js, and Tailwind CSS.",
   "main": "main/index.js",
   "productName": "ElectronTypescriptNext",
@@ -39,6 +39,8 @@
     "tailwindcss": "^3.3.2",
     "typescript": "^4.0.5"
   },
+  "author": "cyrus-c",
+  "license": "MIT",
   "build": {
     "asar": true,
     "files": [
